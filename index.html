@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151211">
+  <meta name="robots" content="noindex, follow">
+  <title>Kempra · Cumbia pa’ el mundo</title>
+  <meta name="description" content="Kempra, agrupación de cumbia y vallenato de Popayán, Colombia. Escucha su música, conoce el show y consulta disponibilidad para tu evento.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:url" content="https://n8n.angelszs.site/webhook/zosa?slug=kempra">
+  <meta property="og:title" content="Kempra · Cumbia pa’ el mundo">
+  <meta property="og:description" content="Cumbia y vallenato desde Popayán. Música, videos y contrataciones.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-compartir.jpg">
+  <meta property="og:image:alt" content="Kempra · Cumbia pa’ el mundo">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-icono.png">
+  <link rel="preload" href="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-hero.webp" as="image">
+  <style>
+    @font-face {
+      font-family: "Barlow Condensed";
+      src: url("https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/barlow-condensed-800.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "DM Sans";
+      src: url("https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/dm-sans.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+    }
+
+    :root {
+      color-scheme: dark;
+      --ink: #151211;
+      --deep: #1b1614;
+      --surface: #231d19;
+      --paper: #f8f0df;
+      --gold: #efbc62;
+      --gold-pale: #ffd78d;
+      --muted: #c9bdb1;
+      --line: #4b3d34;
+      --display: "Barlow Condensed", Impact, "Arial Narrow", sans-serif;
+      --body: "DM Sans", system-ui, sans-serif;
+      --wrap: min(1240px, 100% - 112px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; background: var(--ink); color: var(--paper); font: 400 1rem/1.6 var(--body); }
+    body:has(dialog[open]) { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    h1, h2, h3, p, figure { margin: 0; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: .95; }
+    h2 { font-size: clamp(3.4rem, 6.4vw, 6.35rem); letter-spacing: -.025em; }
+    :focus-visible { outline: 3px solid #fff4d9; outline-offset: 5px; }
+    .wrap { width: var(--wrap); margin-inline: auto; }
+    .skip { position: fixed; z-index: 30; top: 10px; left: 10px; transform: translateY(-150%); background: var(--paper); color: var(--ink); padding: 12px 16px; }
+    .skip:focus { transform: none; }
+    .eyebrow { font-size: .77rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; line-height: 1.45; }
+    .eyebrow.gold { color: var(--gold); }
+    .quiet { color: var(--muted); }
+    .arrow { font-size: 1.15em; line-height: 1; }
+
+    .head { position: relative; z-index: 5; border-bottom: 1px solid var(--line); background: #151211; }
+    .head-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
+    .brand { display: inline-flex; align-items: center; flex: none; }
+    .brand img { width: 137px; height: auto; }
+    .nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 46px); }
+    .nav a { font-weight: 600; font-size: .88rem; color: var(--muted); }
+    .nav a:hover, .foot-links a:hover { color: var(--gold-pale); }
+    .nav-toggle { display: none; border: 1px solid var(--line); color: var(--paper); background: transparent; padding: 8px 12px; border-radius: 5px; }
+    .button { display: inline-flex; justify-content: center; align-items: center; gap: 12px; padding: 13px 20px; min-height: 49px; border: 1px solid transparent; border-radius: 4px; font-size: .91rem; font-weight: 700; line-height: 1.25; transition: background .2s, color .2s, border-color .2s, transform .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .solid { background: var(--gold); color: var(--ink); }
+    .solid:hover { background: var(--gold-pale); }
+    .outline { border-color: #76634f; color: var(--paper); background: #17121044; }
+    .outline:hover { border-color: var(--gold); }
+    .nav-cta { min-height: 40px; padding: 8px 15px; }
+
+    .hero { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .hero::before { content: ""; position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse at 67% 35%, #513627 0%, #211917 49%, #151211 78%); }
+    .hero-inner { position: relative; display: grid; grid-template-columns: .86fr 1fr; align-items: center; min-height: 615px; }
+    .hero-copy { position: relative; z-index: 2; padding: 58px 0 62px; }
+    .hero-copy .eyebrow { display: flex; gap: 11px; align-items: center; }
+    .hero-copy .eyebrow::before { content: ""; width: 23px; height: 1px; background: var(--gold); }
+    h1 { margin: 17px 0 20px; font-size: clamp(5.45rem, 10.1vw, 10.4rem); line-height: .79; text-transform: uppercase; letter-spacing: -.022em; }
+    h1 span { display: block; }
+    h1 .highlight { margin-top: 9px; color: var(--gold); }
+    .hero-intro { max-width: 350px; color: var(--muted); font-size: clamp(1rem, 1.35vw, 1.2rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .hero-photo { width: calc(100% + min(4vw,56px)); align-self: stretch; min-width: 0; position: relative; overflow: hidden; margin: 0; }
+    .hero-photo img { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center 43%; }
+    .hero-photo::after { content: ""; pointer-events: none; position: absolute; inset: 0; background: linear-gradient(90deg,#241a17 0%,#241a1728 25%,transparent 57%), linear-gradient(0deg,#211712a1 0%,transparent 22%); }
+    .hero-photo figcaption { position: absolute; right: 24px; bottom: 25px; z-index: 1; color: var(--paper); letter-spacing: .17em; font-size: .68rem; font-weight: 700; text-transform: uppercase; }
+    .hero-photo figcaption::before { content: ""; display: inline-block; margin-right: 8px; width: 6px; height: 6px; border-radius: 100%; background: var(--gold); vertical-align: .12em; }
+    .hero-base { border-bottom: 1px solid var(--line); color: #d8ccc1; }
+    .hero-base .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 49px; }
+    .hero-base span { font-size: .73rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+    .hero-base a { font-size: .84rem; white-space: nowrap; }
+
+    .section { padding-block: clamp(68px, 8vw, 113px); }
+    .section-top { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 35px; }
+    .section-top h2 { margin-top: 9px; }
+    .music { background: var(--paper); color: var(--ink); color-scheme: light; }
+    .music :focus-visible, .booking :focus-visible { outline-color: #513207; }
+    .music .eyebrow { color: #765020; }
+    .music .section-top a { color: #4f3823; }
+    .small-link { display: inline-flex; align-items: center; gap: 9px; font-size: .9rem; font-weight: 700; text-decoration: underline; text-underline-offset: 5px; white-space: nowrap; }
+    .record-grid { display: grid; grid-template-columns: minmax(0,1.02fr) minmax(0,1fr); gap: 18px; }
+    .record { position: relative; display: block; background: #ede2cb; border: 1px solid #d8c7ac; transition: border-color .2s, transform .2s; }
+    .record:hover { transform: translateY(-5px); border-color: #8c622b; }
+    .release-stack { display: grid; grid-template-rows: repeat(2, minmax(0,1fr)); gap: 18px; }
+    .record-compact { display: grid; grid-template-columns: minmax(90px,38%) minmax(0,1fr); align-items: stretch; }
+    .record-compact .record-art { position: relative; aspect-ratio: auto; }
+    .record-compact .record-art img { position: absolute; inset: 0; }
+    .record-text { display: grid; background: #e8d8b8; }
+    .record-text .record-info { padding-inline: clamp(16px, 3vw, 35px); }
+    .record-text h3 { font-size: clamp(2rem, 3.35vw, 3.5rem); }
+    .record-art { display: block; overflow: hidden; aspect-ratio: 1.6; background: #cfb997; }
+    .record-art img { width: 100%; height: 100%; object-fit: cover; }
+    .record-info { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 16px 17px 19px; }
+    .record-info .eyebrow { font-size: .65rem; letter-spacing: .11em; }
+    .record-info h3 { margin-top: 5px; font-size: clamp(1.85rem, 3vw, 2.9rem); }
+    .record-open { display: grid; place-items: center; border: 1px solid #b59b73; border-radius: 50%; width: 40px; height: 40px; font-weight: 700; }
+    .record:hover .record-open { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+    .video-layout, .story-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .76fr); gap: clamp(30px, 6vw, 90px); align-items: center; }
+    .video-section { background: var(--deep); }
+    .video-shell { position: relative; aspect-ratio: 16/9; isolation: isolate; background: #080707; }
+    .video-shell img { width: 100%; height: 100%; object-fit: cover; }
+    .video-cover { display: grid; place-items: center; position: absolute; inset: 0; }
+    .video-cover::after { content: ""; position: absolute; inset: 0; background: #1b0e0736; transition: background .2s; }
+    .video-cover:hover::after { background: #1b0e070a; }
+    .video-shell iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .play { position: absolute; z-index: 1; display: grid; place-items: center; width: clamp(58px, 8vw, 91px); aspect-ratio: 1; border: 1px solid #ffebb9; border-radius: 50%; background: #1e1512bb; color: var(--paper); backdrop-filter: blur(8px); transition: background .2s, color .2s; }
+    .play::after { content: ""; width: 0; height: 0; margin-left: 5px; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 16px solid currentColor; }
+    .video-cover:hover .play { background: var(--gold); color: var(--ink); }
+    .video-copy h2, .story-copy h2 { margin-block: 9px 16px; }
+    .video-copy p:not(.eyebrow), .story-copy p:not(.eyebrow) { max-width: 490px; font-size: 1.04rem; }
+    .video-copy .small-link { margin-top: 20px; color: var(--gold-pale); }
+
+    .story-section { border-block: 1px solid var(--line); }
+    .story-layout { grid-template-columns: minmax(0, .88fr) minmax(0, 1.2fr); }
+    .story-copy .small-link { margin-top: 22px; }
+    .story-photo img { width: 100%; height: auto; aspect-ratio: 1.5; object-fit: cover; object-position: center 46%; }
+    .story-photo figcaption { margin-top: 10px; color: var(--muted); font-size: .76rem; }
+    .story-copy p + p { margin-top: 13px; }
+    .story-copy .eyebrow + h2 { margin-top: 9px; }
+
+    .live { background: #1c1714; }
+
+    .gallery { display: grid; grid-template-columns: 1.25fr .9fr .9fr; gap: 12px; }
+    .gallery button { display: block; position: relative; padding: 0; border: 0; background: var(--ink); overflow: hidden; }
+    .gallery img { width: 100%; height: clamp(240px, 30vw, 400px); object-fit: cover; transition: transform .35s ease; }
+    .gallery button:hover img { transform: scale(1.04); }
+    .gallery .first img { object-position: center top; }
+    .gallery .second img { object-position: center 32%; }
+    .gallery .third img { object-position: center 46%; }
+    .expand { position: absolute; right: 12px; bottom: 12px; width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #ead3b982; border-radius: 50%; color: #fff8e8; background: #181310d9; font-size: 1.15rem; }
+
+    .booking { background: #ebbd71; color: #211610; color-scheme: light; }
+    .booking-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .84fr); gap: clamp(26px, 8vw, 105px); align-items: start; }
+    .booking h2 { margin: 7px 0 14px; }
+    .booking-copy p:not(.eyebrow) { max-width: 375px; }
+    .booking-copy .small-link { margin-top: 20px; }
+    .booking-copy .small-link + .small-link { margin-left: 12px; }
+    .booking-form { display: grid; gap: 12px; min-width: 0; }
+    .form-pair { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+    .field { display: grid; gap: 5px; min-width: 0; }
+    .booking-form label { display: block; font-weight: 700; font-size: .89rem; }
+    .booking-form label span { font-size: .8em; font-weight: 500; }
+    .booking-form input, .booking-form select { min-width: 0; width: 100%; border: 1px solid #8a622c; border-radius: 4px; background: #f9dfaa; min-height: 47px; padding: 8px 10px; color: #211610; }
+    .booking-form input::placeholder { color: #765935; }
+    .booking-form .button { justify-self: start; background: var(--ink); color: var(--paper); }
+    .booking-form .button:hover { background: #392416; }
+    .form-note { font-size: .81rem; color: #503817; }
+
+    .footer { background: #151211; padding-block: 28px; }
+    .foot-row, .foot-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; }
+    .foot-row .brand img { width: 110px; }
+    .foot-row p, .foot-links a { color: var(--muted); font-size: .85rem; }
+    .lightbox { padding: 10px; border: 1px solid var(--line); border-radius: 5px; max-width: calc(100vw - 22px); max-height: calc(100dvh - 22px); background: var(--ink); color: var(--paper); }
+    .lightbox::backdrop { background: #0a0707e8; }
+    .lightbox img { max-width: min(1100px, calc(100vw - 44px)); max-height: calc(100dvh - 95px); margin: auto; object-fit: contain; }
+    .lightbox figcaption { padding: 8px 36px 4px 3px; font-size: .85rem; }
+    .lightbox form { position: absolute; right: 15px; top: 15px; }
+    .lightbox button { min-width: 42px; min-height: 42px; border: 1px solid #f7e3c87a; border-radius: 50%; color: var(--paper); background: #191310ed; font-size: 1.4rem; }
+
+    @media (max-width: 1050px) {
+      :root { --wrap: calc(100% - 76px); }
+      .hero-inner { min-height: 545px; }
+      h1 { font-size: clamp(4.8rem, 10.4vw, 8rem); }
+    }
+
+    @media (max-width: 760px) {
+      :root { --wrap: calc(100% - 42px); }
+      .head-row { min-height: 62px; gap: 10px; }
+      .brand img { width: 108px; }
+      .nav a { font-size: .82rem; }
+      .nav { gap: 15px; }
+      .nav-cta { padding-inline: 10px; font-size: .8rem; }
+      .hero-inner { display: block; min-height: 0; }
+      .hero-copy { padding: 46px 0 29px; }
+      h1 { font-size: clamp(4.65rem, 15.2vw, 7.25rem); margin-block: 13px 17px; }
+      .hero-actions { margin-top: 22px; }
+      .hero-photo { width: calc(100% + 42px); margin-inline: -21px; aspect-ratio: 1.16; }
+      .hero-photo img { object-position: center 39%; }
+      .hero-photo::after { background: linear-gradient(0deg,#160e0b9e,transparent 38%); }
+      .hero-photo figcaption { right: 20px; bottom: 15px; }
+      .hero-base .wrap { min-height: 47px; }
+      .hero-base span { font-size: .65rem; letter-spacing: .085em; }
+      .section-top { align-items: start; flex-direction: column; gap: 14px; }
+      .record-grid, .release-stack { gap: 10px; }
+      .record-info { gap: 8px; padding: 12px 9px; }
+      .record-info h3 { font-size: clamp(1.65rem, 4.2vw, 2.35rem); }
+      .record-open { width: 31px; height: 31px; }
+      .video-layout, .story-layout, .booking-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+      .story-copy { order: -1; }
+      .gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .gallery .first { grid-column: 1 / -1; }
+      .gallery img { height: clamp(160px, 43vw, 330px); }
+      .gallery .first img { height: auto; aspect-ratio: 1.5; }
+    }
+
+    @media (max-width: 540px) {
+      .nav-toggle { display: inline-block; margin-left: auto; }
+      .nav { display: none; position: absolute; inset: 100% 0 auto; flex-direction: column; align-items: stretch; gap: 0; background: var(--ink); border-bottom: 1px solid var(--line); padding: 8px 21px 14px; }
+      .nav[data-open] { display: flex; }
+      .nav a { padding: 11px 0; min-height: 44px; color: var(--paper); }
+      .nav a + a { border-top: 1px solid var(--line); }
+      .record-grid { grid-template-columns: minmax(0,1fr); gap: 12px; }
+      .record { display: grid; grid-template-columns: minmax(90px, .62fr) minmax(0,1fr); }
+      .record-art { aspect-ratio: 1; }
+      .record-compact .record-art { position: static; aspect-ratio: 1; }
+      .record-compact .record-art img { position: static; }
+      .record-text { grid-template-columns: minmax(0,1fr); min-height: 92px; }
+      .release-stack { grid-template-rows: auto auto; gap: 12px; }
+      .record-info { padding-inline: 12px; }
+      .record-info h3 { font-size: clamp(1.55rem, 6.5vw, 2.35rem); }
+      .foot-links { justify-content: start; }
+      .foot-row p { width: 100%; }
+    }
+
+    @media (max-width: 350px) {
+      :root { --wrap: calc(100% - 32px); }
+      .hero-photo { width: calc(100% + 32px); margin-inline: -16px; }
+      .hero-actions .button { padding-inline: 12px; }
+      .form-pair { grid-template-columns: minmax(0,1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenido">Ir al contenido</a>
+  <header class="head">
+    <div class="wrap head-row">
+      <a class="brand" href="#inicio" aria-label="Kempra, inicio"><img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-logo.webp" width="480" height="167" alt="Kempra Music"></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menú</button>
+      <nav id="navigation" class="nav" aria-label="Navegación principal">
+        <a href="#musica">Música</a>
+        <a href="#historia">Historia</a>
+        <a href="#en-vivo">En vivo</a>
+      </nav>
+      <a class="button solid nav-cta" href="#contrataciones">Contratar <span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio" aria-labelledby="titulo">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow gold">Kempra · Popayán, Colombia</p>
+          <h1 id="titulo"><span>Cumbia pa’</span><span class="highlight">el mundo.</span></h1>
+          <p class="hero-intro">Cumbia colombiana, vallenato y el sonido de un acordeón que invita a bailar.</p>
+          <div class="hero-actions">
+            <a class="button solid" href="#musica">Escuchar a Kempra <span class="arrow" aria-hidden="true">↓</span></a>
+            <a class="button outline" href="#contrataciones">Consulta tu fecha <span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <figure class="hero-photo">
+          <img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-hero.webp" width="960" height="960" alt="Dos integrantes de Kempra, uno con el acordeón de la agrupación" fetchpriority="high">
+          <figcaption>Kempra Music</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="hero-base">
+      <div class="wrap">
+        <span>Cumbia · Vallenato · Música en vivo</span>
+        <a href="https://www.instagram.com/kempramusic/" target="_blank" rel="noopener">@kempramusic <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <section class="section music" id="musica" aria-labelledby="musica-title">
+      <div class="wrap">
+        <div class="section-top">
+          <div>
+            <p class="eyebrow">Discografía</p>
+            <h2 id="musica-title">Escucha a Kempra.</h2>
+          </div>
+          <a class="small-link" href="https://music.apple.com/co/artist/kempra/721589252" target="_blank" rel="noopener">Ver más música <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="record-grid">
+          <a class="record" href="https://music.apple.com/co/album/mi-ritmo-pegao/6836503287?i=6836503295" target="_blank" rel="noopener">
+            <span class="record-art"><img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/mi-ritmo-pegao.webp" width="600" height="600" alt="" loading="lazy"></span>
+            <div class="record-info"><div><p class="eyebrow">Sencillo · 2026</p><h3>Mi Ritmo Pegao</h3></div><span class="record-open" aria-hidden="true">↗</span></div>
+          </a>
+          <div class="release-stack">
+            <a class="record record-text" href="https://music.apple.com/us/album/no-llores-mi-alma/6783994798?i=6783994800" target="_blank" rel="noopener">
+              <div class="record-info"><div><p class="eyebrow">Sencillo · 2026</p><h3>No Llores Mi Alma</h3></div><span class="record-open" aria-hidden="true">↗</span></div>
+            </a>
+            <a class="record record-compact" href="https://music.apple.com/us/album/cumbia-de-colores-ep/1692193583" target="_blank" rel="noopener">
+              <span class="record-art"><img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/cumbia-de-colores.webp" width="600" height="600" alt="" loading="lazy"></span>
+              <div class="record-info"><div><p class="eyebrow">EP · 2023</p><h3>Cumbia de Colores</h3></div><span class="record-open" aria-hidden="true">↗</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section video-section" aria-labelledby="video-title">
+      <div class="wrap video-layout">
+        <div class="video-shell">
+          <a class="video-cover" href="https://www.youtube.com/watch?v=ZotbyNU5zQY" target="_blank" rel="noopener" aria-label="Reproducir el video No Llores Mi Alma">
+            <img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/no-llores-video.webp" width="1280" height="720" alt="" loading="lazy">
+            <span class="play" aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="video-copy">
+          <p class="eyebrow gold">Videoclip</p>
+          <h2 id="video-title">No Llores<br>Mi Alma.</h2>
+
+          <a class="small-link" href="https://www.youtube.com/watch?v=ZotbyNU5zQY" target="_blank" rel="noopener">Ver en YouTube <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section story-section" id="historia" aria-labelledby="historia-title">
+      <div class="wrap story-layout">
+        <div class="story-copy">
+          <p class="eyebrow gold">Nuestra historia</p>
+          <h2 id="historia-title">Desde la Ciudad Blanca.</h2>
+          <p class="quiet">Kempra nació en Popayán en 2010. La agrupación reúne la cumbia bailable y el vallenato romántico, con el acordeón al frente.</p>
+          <p class="quiet">Con <em>Maldita Soledad</em> se abrieron camino en la radio y, en 2012, llevaron <em>Cumbia de Colores</em> y <em>Vuelve</em> a Ecuador. En 2013, Jair Hernández puso la voz a <em>Una Aventura Más</em>, escrita por el acordeonista Luis Carlos Muñoz.</p>
+          <a class="small-link" href="https://open.spotify.com/track/75dB3CfpxLOQiA8GtvQQov" target="_blank" rel="noopener">Escuchar Maldita Soledad <span aria-hidden="true">↗</span></a>
+        </div>
+        <figure class="story-photo">
+          <img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-banda.webp" width="900" height="600" loading="lazy" alt="Integrantes de Kempra reunidos en el escenario">
+          <figcaption>Kempra, agrupación musical de Popayán.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section live" id="en-vivo" aria-labelledby="en-vivo-title">
+      <div class="wrap">
+        <div class="section-top">
+          <div><p class="eyebrow gold">En vivo</p><h2 id="en-vivo-title">Kempra en tarima.</h2></div>
+          <a class="small-link" href="https://www.instagram.com/kempramusic/reels/" target="_blank" rel="noopener">Ver más en Instagram <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="gallery">
+          <button class="first" type="button" data-gallery data-caption="Kempra en tarima" aria-label="Ampliar foto de Kempra en tarima">
+            <img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-en-tarima.webp" width="1040" height="1350" alt="Integrantes de Kempra en tarima, iluminados en violeta" loading="lazy">
+            <span class="expand" aria-hidden="true">↗</span>
+          </button>
+          <button class="second" type="button" data-gallery data-caption="Jair Hernández en vivo" aria-label="Ampliar foto de Jair Hernández en vivo">
+            <img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/jair-en-vivo.webp" width="900" height="1180" alt="Jair Hernández con micrófono durante una presentación" loading="lazy">
+            <span class="expand" aria-hidden="true">↗</span>
+          </button>
+          <button class="third" type="button" data-gallery data-caption="La banda en concierto" aria-label="Ampliar foto de la banda en concierto">
+            <img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-concierto.webp" width="960" height="1040" alt="Músicos de Kempra en concierto bajo luces de escenario" loading="lazy">
+            <span class="expand" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section booking" id="contrataciones" aria-labelledby="contrataciones-title">
+      <div class="wrap booking-grid">
+        <div class="booking-copy">
+          <p class="eyebrow">Contrataciones</p>
+          <h2 id="contrataciones-title">Kempra en tu evento.</h2>
+          <p>Cuéntanos dónde será el evento y cuándo lo tienes previsto. Te respondemos por WhatsApp para revisar disponibilidad.</p>
+          <a class="small-link" href="tel:+573113196371">Llamar al 311 319 6371</a>
+          <a class="small-link" href="mailto:kemprarev@gmail.com">Escribir por correo</a>
+        </div>
+        <form class="booking-form" id="booking-form">
+          <div class="field">
+            <label for="booking-city">Ciudad</label>
+            <input id="booking-city" name="ciudad" required maxlength="80" placeholder="Ej. Popayán">
+          </div>
+          <div class="form-pair">
+            <div class="field">
+              <label for="booking-type">Tipo de evento</label>
+              <select id="booking-type" name="evento" required>
+                <option value="">Selecciona uno</option>
+                <option>Fiesta privada</option>
+                <option>Festival o feria</option>
+                <option>Evento empresarial</option>
+                <option>Otro evento</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="booking-date">Fecha <span>(opcional)</span></label>
+              <input id="booking-date" name="fecha" type="date">
+            </div>
+          </div>
+          <button class="button" type="submit">Consultar por WhatsApp <span class="arrow" aria-hidden="true">↗</span></button>
+          <p class="form-note">Se abrirá WhatsApp con el mensaje listo para que lo envíes.</p>
+          <noscript><a class="small-link" href="https://wa.me/573113196371">Abrir WhatsApp</a></noscript>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot-row">
+      <a class="brand" href="#inicio" aria-label="Kempra, inicio"><img src="https://raw.githubusercontent.com/Ahgarzon/kempra/main/assets/kempra-logo.webp" width="480" height="167" alt="Kempra Music"></a>
+      <p>Kempra · Popayán, Cauca, Colombia</p>
+      <nav class="foot-links" aria-label="Redes y plataformas">
+        <a href="https://www.instagram.com/kempramusic/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="https://www.youtube.com/@kemprarev" target="_blank" rel="noopener">YouTube ↗</a>
+        <a href="https://open.spotify.com/album/0rwDxKA2G5V07HgciAe7Io" target="_blank" rel="noopener">Spotify ↗</a>
+        <a href="https://wa.me/573113196371" target="_blank" rel="noopener">WhatsApp ↗</a>
+      </nav>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" aria-labelledby="foto-titulo">
+    <form method="dialog"><button type="submit" aria-label="Cerrar foto">×</button></form>
+    <figure><img alt=""><figcaption id="foto-titulo"></figcaption></figure>
+  </dialog>
+
+  <script>
+    const nav = document.querySelector('.nav');
+    const menu = document.querySelector('.nav-toggle');
+    function setMenu(open) {
+      nav.toggleAttribute('data-open', open);
+      menu.setAttribute('aria-expanded', String(open));
+    }
+    menu.addEventListener('click', () => setMenu(!nav.hasAttribute('data-open')));
+    nav.addEventListener('click', event => {
+      if (event.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && nav.hasAttribute('data-open')) {
+        setMenu(false);
+        menu.focus();
+      }
+    });
+
+    const dialog = document.querySelector('.lightbox');
+    const largeImage = dialog.querySelector('img');
+    const caption = dialog.querySelector('figcaption');
+    let activePhoto;
+    document.querySelectorAll('[data-gallery]').forEach(button => {
+      button.addEventListener('click', () => {
+        const image = button.querySelector('img');
+        activePhoto = button;
+        largeImage.src = image.currentSrc || image.src;
+        largeImage.alt = image.alt;
+        caption.textContent = button.dataset.caption;
+        dialog.showModal();
+      });
+    });
+    dialog.addEventListener('click', event => {
+      if (event.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right ||
+          event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      largeImage.removeAttribute('src');
+      activePhoto?.focus();
+    });
+
+    const videoLink = document.querySelector('.video-cover');
+    videoLink.addEventListener('click', event => {
+      if (!['http:', 'https:'].includes(location.protocol) || event.metaKey ||
+          event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      const player = document.createElement('iframe');
+      player.title = 'No Llores Mi Alma, videoclip de Kempra';
+      player.src = 'https://www.youtube-nocookie.com/embed/ZotbyNU5zQY?autoplay=1&rel=0';
+      player.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      player.allowFullscreen = true;
+      player.referrerPolicy = 'strict-origin-when-cross-origin';
+      videoLink.replaceWith(player);
+      player.focus();
+    });
+
+    const booking = document.querySelector('#booking-form');
+    booking.addEventListener('submit', event => {
+      event.preventDefault();
+      const details = new FormData(booking);
+      const city = String(details.get('ciudad')).trim();
+      if (!city) {
+        const input = booking.elements.ciudad;
+        input.value = '';
+        input.reportValidity();
+        return;
+      }
+      const date = String(details.get('fecha'));
+      const formattedDate = date ? date.split('-').reverse().join('/') : 'Por definir';
+      const lines = [
+        'Hola, Kempra. Quiero consultar disponibilidad para una presentación.',
+        'Ciudad: ' + city,
+        'Evento: ' + details.get('evento'),
+        'Fecha: ' + formattedDate
+      ];
+      const target = 'https://wa.me/573113196371?text=' + encodeURIComponent(lines.join('\n'));
+      window.location.assign(target);
+    });
+  </script>
+</body>
+</html>
